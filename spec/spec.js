@@ -1,3 +1,6 @@
+var Player = require("../js/main.js");
+var Game = require("../js/main.js");
+
 describe("RockPaperScissors", function() {
 
   var player1 = null;
