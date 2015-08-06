@@ -1,6 +1,5 @@
 var Player = function(playerName) {
   this.playerName = playerName;
-  this.pick = null;
 };
 
 var Game = function(player1, player2) {
@@ -9,13 +8,18 @@ var Game = function(player1, player2) {
 };
 
 Player.prototype.picks = function(pick) {
+  // code from solution
+  if (pick === undefined) {
+    return this.pick;
+  }
+  // end
   this.pick = pick;
 };
 
 Game.prototype.winner = function() {
 
-  if (this.player1.picks === 'rock') {
-    switch (this.player2.picks) {
+  if (this.player1.picks() === 'rock') {
+    switch (this.player2.picks()) {
       case 'scissors':
         return this.player1;
       case 'paper':
@@ -25,8 +29,8 @@ Game.prototype.winner = function() {
     }
   }
 
-  if (this.player1.picks === 'paper') {
-    switch (this.player2.picks) {
+  if (this.player1.picks() === 'paper') {
+    switch (this.player2.picks()) {
       case 'scissors':
         return this.player2;
       case 'rock':
@@ -36,8 +40,8 @@ Game.prototype.winner = function() {
     }
   }
 
-  if (this.player1.picks === 'scissors') {
-    switch (this.player2.picks) {
+  if (this.player1.picks() === 'scissors') {
+    switch (this.player2.picks()) {
       case 'paper':
         return this.player1;
       case 'rock':
@@ -48,7 +52,10 @@ Game.prototype.winner = function() {
   }
 };
 
-module.exports = Player;
-module.exports = Game;
-
+// module.exports = Player;
+// module.exports = Game;
+module.exports = {
+  Player: Player,
+  Game: Game
+};
 
